@@ -12,6 +12,9 @@ function timeLogger(req, res) {
 
 app.use(function (req, res, next) {
   // 會在一連串 middleware 執行的開始和結束執行各一次
+  if (req.originalUrl.includes('favicon.ico')) {
+    return res.status(204).end()
+  }
   res.locals.startTime = Date.now()
   next()
 })
